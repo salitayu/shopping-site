@@ -14,3 +14,26 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.s-categories-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  height: 55px;
+  border-bottom: 1px solid #000;
+}
+
+.s-categories-container li {
+  margin: 0 5px 0 5px;
+  color: #333;
+  list-style: none;
+  cursor: pointer;
+}
+
+.s-categories-container li:hover {
+  color: #000;
+  text-shadow: 0.5px 0 0 #000;
+  list-style: none;
+  cursor: pointer;
+}

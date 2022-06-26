@@ -17,7 +17,7 @@ CREATE TABLE category (
     id SERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
     description TEXT NOT NULL,
-    slug VARCHAR(100) NOT NULL,
+    slug VARCHAR(150) NOT NULL,
     image TEXT NOT NULL
 );
 
@@ -31,12 +31,12 @@ CREATE TABLE stock (
 CREATE TABLE item (
     id SERIAL PRIMARY KEY,
     category_id INT NOT NULL,
-    name VARCHAR(100) NOT NULL,
+    name VARCHAR(150) NOT NULL,
     stock_id INT NOT NULL,
     description TEXT NOT NULL,
     price NUMERIC NOT NULL,
     image TEXT NOT NULL,
-    slug VARCHAR(100) NOT NULL,
+    slug VARCHAR(150) NOT NULL,
     CONSTRAINT fk_category_item FOREIGN KEY(category_id) REFERENCES category(id),
     CONSTRAINT fk_stock_item FOREIGN KEY(stock_id) REFERENCES stock(id)
 );
@@ -60,7 +60,7 @@ CREATE TABLE orders (
 
 CREATE TABLE order_item (
     id SERIAL PRIMARY KEY,
-    order_id INTEGER REFERENCES orders(id),
+    order_id INTEGER NOT NULL,
     amount INTEGER NOT NULL,
     item_id INTEGER NOT NULL,
     CONSTRAINT fk_item_orderitem FOREIGN KEY(order_id) REFERENCES item(id)
@@ -68,7 +68,7 @@ CREATE TABLE order_item (
 
 CREATE TABLE user_details (
     id SERIAL PRIMARY KEY NOT NULL,
-    user_id INTEGER REFERENCES users(id) NOT NULL,
+    user_id INTEGER NOT NULL,
     address_line1 VARCHAR(200) NOT NULL,
     address_line2 VARCHAR(200) NULL,
     city VARCHAR(100) NOT NULL,
@@ -76,5 +76,6 @@ CREATE TABLE user_details (
     zip VARCHAR(5) NOT NULL,
     phone VARCHAR(10) NOT NULL,
     email VARCHAR(254) NOT NULL,
-    additional_info TEXT NOT NULL
+    additional_info TEXT NOT NULL,
+    CONSTRAINT fk_user_userdetails FOREIGN KEY(user_id) REFERENCES users(id)
 );
